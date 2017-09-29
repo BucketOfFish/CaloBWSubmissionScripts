@@ -4,7 +4,7 @@
 #PBS -j oe
 #PBS -m n
 #PBS -N DNNCalorimeter
-#PBS -o Output/output_19.txt
+#PBS -o Output/output.txt
 #PBS -V
 module load bwpy
 module load cudatoolkit
