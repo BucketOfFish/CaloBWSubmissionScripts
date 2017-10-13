@@ -4,10 +4,9 @@
 #PBS -j oe
 #PBS -m n
 #PBS -N DNNCalorimeter
-#PBS -o Output/output.txt
+#PBS -o Output/output_19.txt
 #PBS -V
 module load bwpy
-module load cudatoolkit
 module add ccm
 export PYTHONPATH=$PYTHONPATH:/u/sciteam/zhang10/Projects/DNNCalorimeter/DLKit
-ccmrun -n 1 python -m CaloDNN.ClassificationExperiment --hyperparamset 19
+ccmrun -n 1 python -m CaloDNN.NeuralNets.ClassificationExperiment --hyperparamset 19

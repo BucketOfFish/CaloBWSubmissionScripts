@@ -1,0 +1,11 @@
+#PBS -l nodes=1:ppn=16:xk
+#PBS -l walltime=005:00:00
+#PBS -l gres=ccm
+#PBS -j oe
+#PBS -m n
+#PBS -N DNNCalorimeter
+#PBS -o Output/0.1_0.01_0.5_50_5/outputs.txt
+#PBS -V
+module load bwpy
+module add ccm
+ccmrun -n 1 python /u/sciteam/zhang10/Projects/DNNCalorimeter/DLKit/CaloDNN/PyTorchNN/dnn.py 0.1 0.01 0.5 50 5

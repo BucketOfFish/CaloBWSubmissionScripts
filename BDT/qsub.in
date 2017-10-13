@@ -1,0 +1,11 @@
+#PBS -l nodes=1:ppn=16:xk
+#PBS -l walltime=005:00:00
+#PBS -l gres=ccm
+#PBS -j oe
+#PBS -m n
+#PBS -N BDTCalorimeter
+#PBS -o Output/5_800_0.1.txt
+#PBS -V
+module load bwpy
+module add ccm
+ccmrun -n 1 python /u/sciteam/zhang10/Projects/DNNCalorimeter/DLKit/CaloDNN/BDTBaseline/BDT.py 5 800 0.1
