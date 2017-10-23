@@ -4,8 +4,7 @@
 #PBS -j oe
 #PBS -m n
 #PBS -N BDTCalorimeter
-#PBS -o Output/MD_NE_LR.txt
-#PBS -V
+#PBS -o Output/2017-10-19_Downsampled/MD_NE_LR/outputs.txt
 module load bwpy
 module add ccm
-ccmrun -n 1 python /u/sciteam/zhang10/Projects/DNNCalorimeter/DLKit/CaloDNN/BDTBaseline/BDT.py MD NE LR
+ccmrun -n 1 python /u/sciteam/zhang10/Projects/DNNCalorimeter/DLKit/CaloDNN/BDTBaseline/BDT.py Output/2017-10-19_Downsampled/MD_NE_LR/ MD NE LR
