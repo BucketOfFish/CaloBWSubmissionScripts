@@ -19,7 +19,7 @@ do
                     sed 's/DP/'$dp_i'/g' -i qsub.in
                     sed 's/HLN/'$hln_i'/g' -i qsub.in
                     sed 's/NHL/'$nhl_i'/g' -i qsub.in
-                    qsub qsub.in
+                    qsub -A bakx qsub.in
                 done
             done
         done

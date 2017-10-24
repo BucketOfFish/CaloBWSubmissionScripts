@@ -5,6 +5,6 @@
 #PBS -m n
 #PBS -N DNNCalorimeter
 #PBS -o Output/2017-10-19_Downsampled/GammaPi0/LR_DR_DP_HLN_NHL/outputs.txt
-module load bwpy
+module add bwpy
 module add ccm
 ccmrun -n 1 python /u/sciteam/zhang10/Projects/DNNCalorimeter/DLKit/CaloDNN/PyTorchNN/WithLoader/dnn.py Output/2017-10-19_Downsampled/GammaPi0/LR_DR_DP_HLN_NHL/ LR DR DP HLN NHL
