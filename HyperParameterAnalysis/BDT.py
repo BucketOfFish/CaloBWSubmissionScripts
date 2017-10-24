@@ -6,15 +6,15 @@ import seaborn as sns
 import os
 import glob
 
-path = "/u/sciteam/zhang10/Projects/DNNCalorimeter/SubmissionScripts/BDT/Output/"
+path = "/u/sciteam/zhang10/Projects/DNNCalorimeter/SubmissionScripts/BDT/Output/2017-10-19_Downsampled/EleChPi/"
 
 scanPoints = glob.glob(path+"*.txt")
 columns=['max_depth','n_estimators','learning_rate','test_accuracy']
 accuracies = pd.DataFrame(columns=columns, index=np.arange(0, len(scanPoints)))
 for i, scanPoint in enumerate(scanPoints):
     # parse scan point
-    parameters = scanPoint.split('_')
-    parameters[0] = parameters[0].split('/')[-1]
+    parameters = scanPoint.split('/')[-1]
+    parameters = parameters.split('_')
     parameters[-1] = parameters[-1][:-4] # remove ".txt"
     parameters = [float(p) for p in parameters]
     # save final test accuracy
@@ -24,6 +24,9 @@ for i, scanPoint in enumerate(scanPoints):
                 accuracy = line.split(' ')[-1]
                 parameters.append(accuracy)
     accuracies.loc[i] = parameters
+
+print "Max accuracy:"
+print np.amax(accuracies)
 
 accuracies = accuracies.loc[accuracies['learning_rate']==0.5]
 accuracies = accuracies[accuracies.columns].astype(float)

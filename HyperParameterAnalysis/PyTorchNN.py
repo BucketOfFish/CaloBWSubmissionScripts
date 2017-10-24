@@ -6,22 +6,25 @@ import seaborn as sns
 import os
 import glob
 
-path = "/u/sciteam/zhang10/Projects/DNNCalorimeter/SubmissionScripts/PyTorchNN/Output/FirstScan/"
+path = "/u/sciteam/zhang10/Projects/DNNCalorimeter/SubmissionScripts/PyTorchNN/Output/2017-10-19_Downsampled/EleChPi/"
 
 scanPoints = glob.glob(path+"*")
 columns=['learning_rate','decay_rate','dropout_prob','hidden_layer_neurons','n_hidden_layers','test_accuracy']
 accuracies = pd.DataFrame(columns=columns, index=np.arange(0, len(scanPoints)))
 for i, scanPoint in enumerate(scanPoints):
     # parse scan point
-    parameters = scanPoint.split('_')
-    parameters[0] = parameters[0].split('/')[-1]
+    parameters = scanPoint.split('/')[-1]
+    parameters = parameters.split('_')
     parameters = [float(p) for p in parameters]
     # save final test accuracy
     data = h5.File(scanPoint+"/Results.h5")
     parameters.append(data['test_accuracy'][0])
     accuracies.loc[i] = parameters
 
-accuracies = accuracies.loc[accuracies['learning_rate']==0.001].loc[accuracies['decay_rate']==0.01].loc[accuracies['dropout_prob']==0.1]
+print "Max accuracy:"
+print np.amax(accuracies)
+
+accuracies = accuracies.loc[accuracies['learning_rate']==0.001].loc[accuracies['decay_rate']==0.01].loc[accuracies['dropout_prob']==0]
 accuracies = accuracies[accuracies.columns].astype(float)
 
 test_accuracy = accuracies['test_accuracy']
